@@ -3,11 +3,12 @@ package com.example.composeplayground
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.composeplayground.layouts.SplitRow
 import com.example.composeplayground.ui.theme.ComposePlaygroundTheme
 
 class MainActivity : ComponentActivity() {
@@ -15,10 +16,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposePlaygroundTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
-                }
+                SplitRow(modifier = Modifier.fillMaxSize(),composables = listOf({ Text(text = "testText") }, { RadioButton(
+                    selected = true,
+                    onClick = { /*TODO*/ }) }))
             }
         }
     }
@@ -33,6 +33,8 @@ fun Greeting(name: String) {
 @Composable
 fun DefaultPreview() {
     ComposePlaygroundTheme {
-        Greeting("Android")
+        SplitRow(modifier = Modifier.fillMaxSize(), composables = listOf({ Text(text = "testText") }, { Button(
+            onClick = {  }, content = {
+                Text(text = "test") }) }))
     }
 }
